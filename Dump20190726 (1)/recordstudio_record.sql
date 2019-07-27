@@ -24,12 +24,12 @@ DROP TABLE IF EXISTS `record`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `record` (
   `r_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `begining` date NOT NULL,
-  `end` date NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `beginning` date NOT NULL,
+  `ending` date NOT NULL,
   `num_of_songs` int(11) NOT NULL,
   PRIMARY KEY (`r_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `record` (
 
 LOCK TABLES `record` WRITE;
 /*!40000 ALTER TABLE `record` DISABLE KEYS */;
-INSERT INTO `record` VALUES (1,'a','2023-01-01','2023-01-01',3);
+INSERT INTO `record` VALUES (1,'a','2016-05-03','2017-01-01',3),(2,'b','2016-01-07','2016-10-20',6),(3,'c','2017-02-28','2017-04-17',10);
 /*!40000 ALTER TABLE `record` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-26 22:53:27
+-- Dump completed on 2019-07-27 22:25:13

@@ -16,31 +16,33 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `people`
+-- Table structure for table `musicians_instrument`
 --
 
-DROP TABLE IF EXISTS `people`;
+DROP TABLE IF EXISTS `musicians_instrument`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `people` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
-  `adress` varchar(45) NOT NULL,
-  `phone` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `m_id_UNIQUE` (`id`),
-  UNIQUE KEY `phone_UNIQUE` (`phone`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+CREATE TABLE `musicians_instrument` (
+  `snum` int(11) NOT NULL AUTO_INCREMENT,
+  `i_id` int(11) NOT NULL,
+  `im_id` int(11) NOT NULL,
+  `m_id` int(11) NOT NULL,
+  PRIMARY KEY (`snum`),
+  KEY `fk_instrument_manufacturer1_idx` (`im_id`),
+  KEY `m_id_idx` (`m_id`),
+  CONSTRAINT `fk_instrument_manufacturer1` FOREIGN KEY (`im_id`) REFERENCES `manufacturer` (`im_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `m_id` FOREIGN KEY (`m_id`) REFERENCES `people` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `people`
+-- Dumping data for table `musicians_instrument`
 --
 
-LOCK TABLES `people` WRITE;
-/*!40000 ALTER TABLE `people` DISABLE KEYS */;
-INSERT INTO `people` VALUES (1,'s','asd','0987654321'),(2,'a','dsa','11111111'),(3,'c','wsx','1111111111'),(4,'sergey','da','222'),(5,'x','as','333'),(6,'QWE','qwe','qwe'),(7,'ewq','ewq','ewq');
-/*!40000 ALTER TABLE `people` ENABLE KEYS */;
+LOCK TABLES `musicians_instrument` WRITE;
+/*!40000 ALTER TABLE `musicians_instrument` DISABLE KEYS */;
+INSERT INTO `musicians_instrument` VALUES (1,1,1,4),(2,1,1,4),(3,1,1,4),(4,2,1,5),(5,3,2,5),(6,3,2,4);
+/*!40000 ALTER TABLE `musicians_instrument` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-27 22:25:07
+-- Dump completed on 2019-07-27 22:25:08

@@ -23,17 +23,11 @@ DROP TABLE IF EXISTS `instrument`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `instrument` (
-  `i_id` int(11) NOT NULL AUTO_INCREMENT,
-  `type` varchar(50) NOT NULL,
-  `im_id` int(11) NOT NULL,
-  `m_id` int(11) NOT NULL,
+  `i_id` int(11) NOT NULL,
+  `type` varchar(45) NOT NULL,
   PRIMARY KEY (`i_id`),
-  UNIQUE KEY `i_id_UNIQUE` (`i_id`),
-  KEY `fk_instrument_manufacturer1_idx` (`im_id`),
-  KEY `m_id_idx` (`m_id`),
-  CONSTRAINT `fk_instrument_manufacturer1` FOREIGN KEY (`im_id`) REFERENCES `manufacturer` (`im_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  CONSTRAINT `m_id` FOREIGN KEY (`m_id`) REFERENCES `people` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `type_UNIQUE` (`type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +36,7 @@ CREATE TABLE `instrument` (
 
 LOCK TABLES `instrument` WRITE;
 /*!40000 ALTER TABLE `instrument` DISABLE KEYS */;
-INSERT INTO `instrument` VALUES (1,'guitar',1,0),(2,'drums',2,1),(3,'bass',3,2);
+INSERT INTO `instrument` VALUES (2,'bass'),(3,'drums'),(1,'guitar');
 /*!40000 ALTER TABLE `instrument` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -55,4 +49,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-26 22:53:29
+-- Dump completed on 2019-07-27 22:25:09

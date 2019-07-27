@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `musicians`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `musicians` (
   `m_id` int(11) NOT NULL,
-  KEY `people-musicians` (`m_id`),
+  PRIMARY KEY (`m_id`),
   CONSTRAINT `people-musicians` FOREIGN KEY (`m_id`) REFERENCES `people` (`id`) ON UPDATE RESTRICT
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -35,6 +35,7 @@ CREATE TABLE `musicians` (
 
 LOCK TABLES `musicians` WRITE;
 /*!40000 ALTER TABLE `musicians` DISABLE KEYS */;
+INSERT INTO `musicians` VALUES (4),(5);
 /*!40000 ALTER TABLE `musicians` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -47,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-26 22:53:30
+-- Dump completed on 2019-07-27 22:25:10

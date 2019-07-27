@@ -16,31 +16,29 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `people`
+-- Table structure for table `genre-song`
 --
 
-DROP TABLE IF EXISTS `people`;
+DROP TABLE IF EXISTS `genre-song`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
  SET character_set_client = utf8mb4 ;
-CREATE TABLE `people` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(45) NOT NULL,
-  `adress` varchar(45) NOT NULL,
-  `phone` varchar(10) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `m_id_UNIQUE` (`id`),
-  UNIQUE KEY `phone_UNIQUE` (`phone`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+CREATE TABLE `genre-song` (
+  `s_id` int(11) NOT NULL,
+  `g_id` int(11) NOT NULL,
+  PRIMARY KEY (`s_id`,`g_id`),
+  KEY `g_id_idx` (`g_id`),
+  CONSTRAINT `g_id` FOREIGN KEY (`g_id`) REFERENCES `genre` (`g_id`),
+  CONSTRAINT `s_id` FOREIGN KEY (`s_id`) REFERENCES `song` (`s_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `people`
+-- Dumping data for table `genre-song`
 --
 
-LOCK TABLES `people` WRITE;
-/*!40000 ALTER TABLE `people` DISABLE KEYS */;
-INSERT INTO `people` VALUES (1,'s','asd','0987654321'),(2,'a','dsa','11111111'),(3,'c','wsx','1111111111'),(4,'sergey','da','222'),(5,'x','as','333'),(6,'QWE','qwe','qwe'),(7,'ewq','ewq','ewq');
-/*!40000 ALTER TABLE `people` ENABLE KEYS */;
+LOCK TABLES `genre-song` WRITE;
+/*!40000 ALTER TABLE `genre-song` DISABLE KEYS */;
+/*!40000 ALTER TABLE `genre-song` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +50,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-27 22:25:07
+-- Dump completed on 2019-07-27 22:25:09

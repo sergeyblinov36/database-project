@@ -24,20 +24,17 @@ DROP TABLE IF EXISTS `song`;
  SET character_set_client = utf8mb4 ;
 CREATE TABLE `song` (
   `s_id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `begining` date NOT NULL,
-  `end` date NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `recordDate` date NOT NULL,
   `r_id` int(11) NOT NULL,
   `length` int(11) NOT NULL,
-  `tech_id` int(11) NOT NULL,
   `t_id` int(11) NOT NULL,
   PRIMARY KEY (`s_id`),
   KEY `tech_idx` (`t_id`),
-  KEY `tachech_idx` (`tech_id`),
   KEY `rec_idx` (`r_id`),
   CONSTRAINT `rec` FOREIGN KEY (`r_id`) REFERENCES `record` (`r_id`),
   CONSTRAINT `tech` FOREIGN KEY (`t_id`) REFERENCES `technician` (`t_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +43,7 @@ CREATE TABLE `song` (
 
 LOCK TABLES `song` WRITE;
 /*!40000 ALTER TABLE `song` DISABLE KEYS */;
-INSERT INTO `song` VALUES (1,'a','2023-01-01','2024-01-01',1,120,0,1),(2,'b','2023-01-01','2023-01-01',1,130,0,2),(3,'c','2023-01-01','2023-01-01',1,123,0,3);
+INSERT INTO `song` VALUES (1,'a','2016-01-01',1,120,1),(2,'b','2017-01-01',1,130,2),(3,'c','2016-07-01',1,123,3),(4,'d','2016-09-09',2,200,1),(5,'e','2016-05-10',2,200,2),(6,'f','2017-03-09',2,100,3);
 /*!40000 ALTER TABLE `song` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -59,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-07-26 22:53:27
+-- Dump completed on 2019-07-27 22:25:08
