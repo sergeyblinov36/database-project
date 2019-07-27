@@ -1,0 +1,96 @@
+1)
+SELECT title 
+
+FROM recordstudio.record
+
+WHERE beginning>='2016-01-01' AND ending<'2017-01-01'
+
+2)
+SELECT people.name,song.title
+
+FROM people JOIN musicians on musicians.m_id=people.id AND people.name='sergey'
+
+JOIN musicians_song ON musicians.m_id=musicians_song.m_id
+
+JOIN song ON song.s_id=musicians_song.s_id AND (song.recordDate>='2016-01-01' AND song.recordDate<'2017-01-01')
+
+
+3)
+SELECT DISTINCT people.name,record.title
+
+FROM people JOIN musicians ON musicians.m_id=people.id AND people.name='sergey'
+
+JOIN musicians_song ON musicians.m_id=musicians_song.m_id
+
+JOIN song ON song.s_id=musicians_song.s_id AND (song.recordDate>='2016-01-01' AND song.recordDate<'2017-01-01')
+
+JOIN record ON song.r_id=record.r_id
+
+4)
+SELECT instrument.type,COUNT(musicians_instrument.i_id) AS `value_occurrence`
+
+FROM instrument,musicians_instrument
+
+WHERE instrument.i_id=musicians_instrument.i_id
+
+GROUP BY musicians_instrument.i_id
+    
+ORDER BY `value_occurrence` DESC
+    
+LIMIT    1;
+
+
+5)
+SELECT  instrument.type,musicians_instrument.snum,manufacturer.company
+
+FROM instrument,musicians_instrument,musicians,song,musicians_song,record,manufacturer
+
+WHERE record.title='b' AND record.r_id=song.r_id AND song.s_id=musicians_song.s_id 
+AND musicians_song.m_id=musicians.m_id AND musicians_instrument.m_id=musicians.m_id 
+AND instrument.i_id=musicians_instrument.i_id AND musicians_instrument.im_id=manufacturer.im_id
+
+GROUP BY musicians_instrument.snum
+
+6)
+SELECT people.name,people.adress,people.phone,COUNT(people.id) AS `value_occurrence`
+
+FROM people
+
+JOIN producer ON producer.p_id=people.id
+
+JOIN recordproducer ON producer.p_id=recordproducer.p_id
+
+JOIN record ON recordproducer.r_id=record.r_id
+
+WHERE record.beginning>='2016-01-01' AND record.ending<'2017-10-10'
+
+GROUP BY people.id
+
+ORDER BY `value_occurrence` DESC
+  
+LIMIT 1;
+
+
+7)
+SELECT DISTINCT manufacturer.company,COUNT(manufacturer.im_id) AS `value_occurrence`
+
+FROM musicians_song
+
+JOIN musicians_instrument ON musicians_song.m_id=musicians_instrument.m_id
+
+JOIN manufacturer ON musicians_instrument.im_id=manufacturer.im_id
+
+GROUP BY manufacturer.im_id
+
+
+ORDER BY `value_occurrence` DESC
+
+LIMIT 1;
+  
+
+8)
+SELECT COUNT(DISTINCT musicians.m_id) AS 'count'
+
+FROM musicians,musicians_song
+
+WHERE musicians.m_id=musicians_song.m_id
