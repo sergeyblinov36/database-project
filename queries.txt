@@ -94,3 +94,67 @@ SELECT COUNT(DISTINCT musicians.m_id) AS 'count'
 FROM musicians,musicians_song
 
 WHERE musicians.m_id=musicians_song.m_id
+
+10)
+SELECT
+  genre.genre,
+  COUNT(`genre-song`.g_id) AS 'count'
+
+FROM `genre-song`
+  INNER JOIN genre
+    ON `genre-song`.g_id = genre.g_id
+
+GROUP BY genre.genre
+
+ORDER BY genre.genre
+
+LIMIT 1;
+
+11)
+SELECT
+  people.name,
+  COUNT(recordproducer.p_id) AS 'count'
+
+FROM recordproducer
+  INNER JOIN people
+    ON recordproducer.p_id = people.id
+  
+INNER JOIN record
+    ON recordproducer.r_id = record.r_id
+    
+WHERE record.beginning>='2000-01-01' AND record.ending<'2020-01-01'
+
+GROUP BY people.name 
+
+ORDER BY 'count' DESC
+LIMIT 1;
+
+
+12)
+SELECT record.title
+FROM record
+ORDER BY record.beginning ASC
+LIMIT 1;
+
+13)
+The way made it,a song can only be contained in a single record
+
+14)
+SELECT DISTINCT
+  people.name
+
+FROM song song_1
+  
+INNER JOIN song
+    ON song_1.t_id = song.t_id
+ AND song_1.r_id = song.r_id
+    
+INNER JOIN technician
+    ON technician.t_id=song_1.t_id
+  
+INNER JOIN people
+    ON song_1.t_id = people.id
+
+WHERE song.r_id = song_1.r_id 
+AND song.t_id = song_1.t_id
+ AND song_1.s_id<>song.s_id
